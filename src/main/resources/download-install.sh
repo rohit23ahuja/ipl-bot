@@ -26,8 +26,8 @@ set_env_variable() {
       exit 1
   fi
   echo "Successfully retrieved API key"
-  echo "export JAVA_HOME=/usr/lib/jvm/java-21-amazon-corretto" >> ~/.bash_profile
-  echo "export PATH=$JAVA_HOME/bin:$PATH" >> ~/.bash_profile
+  echo 'export JAVA_HOME=/usr/lib/jvm/java-21-amazon-corretto' >> ~/.bash_profile
+  echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bash_profile
   source ~/.bash_profile
 }
 
