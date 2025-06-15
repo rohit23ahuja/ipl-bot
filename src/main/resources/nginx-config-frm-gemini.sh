@@ -12,7 +12,7 @@ echo "  1. Ensure your EC2 instance has been allocated an Elastic IP."
 echo "  2. Ensure your AWS Security Group for this EC2 instance allows inbound traffic on:"
 echo "     - TCP Port 80 (HTTP) from 0.0.0.0/0 (for Certbot verification and HTTP redirect)"
 echo "     - TCP Port 443 (HTTPS) from 0.0.0.0/0 (for secure web traffic)"
-echo "  3. Ensure your Squarespace DNS A records for 'app.rohitahuja.dev' point to your Elastic IP."
+echo "  3. Ensure your Squarespace DNS A records for 'rohitahuja.dev' and 'www.rohitahuja.dev' point to your Elastic IP."
 echo "  4. Ensure your Spring Boot web application is running on port 8085 on this EC2 instance."
 echo ""
 echo "Press Enter to continue, or Ctrl+C to abort if prerequisites are not met."
@@ -42,13 +42,34 @@ sudo chown -R ec2-user:ec2-user /etc/nginx || true # Using || true to prevent sc
 sudo chmod 755 -R /etc/nginx || true             # Using || true to prevent script from exiting if this fails
 echo "Nginx permissions adjusted."
 
+# --- NEW Step: 3.5. Create a basic Nginx server block for Certbot to find ---
+# This minimal server block allows Certbot to automatically configure SSL.
+# It will be overwritten by your detailed config later.
+echo "Step 3.5: Creating a temporary Nginx server block for Certbot auto-configuration..."
+NGINX_TEMP_CONF_FILE="/etc/nginx/conf.d/rohitahuja.dev.temp.conf" # Use a temp name
+sudo tee "$NGINX_TEMP_CONF_FILE" > /dev/null << 'EOF'
+server {
+    listen 80;
+    server_name rohitahuja.dev www.rohitahuja.dev app.rohitahuja.dev;
+    # Certbot will add its challenge here, and then the SSL config.
+    # This block will be replaced/modified by the comprehensive config later.
+}
+EOF
+echo "Temporary Nginx config for Certbot created."
+# Restart Nginx to load the temporary config, so Certbot can see it.
+echo "Restarting Nginx to load temporary configuration..."
+sudo systemctl restart nginx
+
 # --- 4. Obtaining SSL Certificate with Certbot ---
 echo "Step 4: Obtaining SSL certificate using Certbot..."
 echo "This is a non-interactive process. Ensure your DNS is propagated and ports 80/443 are open."
-sudo certbot --nginx --non-interactive --agree-tos --email rohit23ahuja@gmail.com --domain app.rohitahuja.dev
+sudo certbot --nginx --non-interactive --agree-tos --email rohit23ahuja@gmail.com --domain rohitahuja.dev --domain www.rohitahuja.dev --domain app.rohitahuja.dev
 
 if [ $? -eq 0 ]; then
     echo "SSL certificate successfully obtained and saved."
+    # After successful installation, remove the temporary config file
+    sudo rm -f "$NGINX_TEMP_CONF_FILE"
+    echo "Temporary Nginx config removed."
 else
     echo "ERROR: Certbot failed to obtain or install the certificate. Please review the output above."
     echo "Check your domain's DNS, Elastic IP allocation, and Security Group rules (especially port 80)."
@@ -63,7 +84,7 @@ sudo tee "$NGINX_CONF_FILE" > /dev/null << 'EOF'
 # This server block handles HTTP requests and redirects them to HTTPS
 server {
     listen 80;
-    server_name app.rohitahuja.dev;
+    server_name rohitahuja.dev www.rohitahuja.dev app.rohitahuja.dev;
 
     # This ensures Certbot can renew your certificate later via the HTTP challenge
     location /.well-known/acme-challenge/ {
@@ -76,7 +97,7 @@ server {
 
 server {
     listen 443 ssl;
-    server_name app.rohitahuja.dev;
+    server_name rohitahuja.dev www.rohitahuja.dev app.rohitahuja.dev;
 
     # SSL Certificate Paths (Certbot has saved them here)
     ssl_certificate /etc/letsencrypt/live/rohitahuja.dev/fullchain.pem;
@@ -116,4 +137,4 @@ echo "Nginx service restarted."
 
 echo "------------------------------------------"
 echo "Nginx and SSL setup script finished."
-echo "You should now be able to access your Spring Boot application via https://app.rohitahuja.dev"
+echo "You should now be able to access your Spring Boot application via https://rohitahuja.dev"
