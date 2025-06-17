@@ -1,6 +1,8 @@
 package dev.rohitahuja.chat.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
@@ -25,7 +27,9 @@ public class ChatController {
 
     public ChatController(ChatClient.Builder builder,
                           VectorStore vectorStore) {
-        this.chatClient = builder.build();
+        this.chatClient = builder
+                .defaultAdvisors(MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().build()).build())
+                .build();
         this.vectorStore = vectorStore;
     }
 
