@@ -1,11 +1,12 @@
 package dev.rohitahuja.chat;
 
+import dev.rohitahuja.chat.toolcalling.EmailConfigProperties;
 import dev.rohitahuja.chat.toolcalling.WeatherConfigProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-@EnableConfigurationProperties(WeatherConfigProperties.class)
+@EnableConfigurationProperties({WeatherConfigProperties.class, EmailConfigProperties.class})
 @SpringBootApplication
 public class IplBotApplication {
 

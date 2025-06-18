@@ -12,10 +12,12 @@ public class ToolCallingController {
 
     private final ChatModel chatModel;
     private final WeatherConfigProperties weatherConfigProperties;
+    private final EmailConfigProperties emailConfigProperties;
 
-    public ToolCallingController(ChatModel chatModel, WeatherConfigProperties weatherConfigProperties) {
+    public ToolCallingController(ChatModel chatModel, WeatherConfigProperties weatherConfigProperties, EmailConfigProperties emailConfigProperties) {
         this.chatModel = chatModel;
         this.weatherConfigProperties = weatherConfigProperties;
+        this.emailConfigProperties = emailConfigProperties;
     }
 
     @GetMapping("/tool/chat")
@@ -28,6 +30,19 @@ public class ToolCallingController {
                 .stream()
                 .content();
     }
+
+    @GetMapping("/tool/chat-email")
+    public Flux<String>  toolChatEmail(@RequestParam String message){
+        return ChatClient.create(chatModel)
+                .prompt()
+                .user(message)
+                .system("You are a helpful AI Assistant that helps in sending email to a given recipient with a message.")
+                .tools(new EmailTools(emailConfigProperties))
+                .stream()
+                .content();
+    }
+
+
 
 //    private final ChatClient chatClient;
 //
