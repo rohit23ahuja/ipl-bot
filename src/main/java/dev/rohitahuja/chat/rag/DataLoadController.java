@@ -1,7 +1,6 @@
-package dev.rohitahuja.chat.controller;
+package dev.rohitahuja.chat.rag;
 
-import dev.rohitahuja.chat.rag.DataLoader;
-import org.springframework.ai.reader.TextReader;
+import dev.rohitahuja.chat.rag.service.DataLoader;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +15,8 @@ public class DataLoadController {
         this.dataLoader = dataLoader;
     }
 
-    @GetMapping("/data-load")
+    @GetMapping("/rag/data-load")
     public void dataLoad(@RequestParam String fileName) {
-
         dataLoader.load(fileName);
     }
 }

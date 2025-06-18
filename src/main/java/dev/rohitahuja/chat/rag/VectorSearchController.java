@@ -1,4 +1,4 @@
-package dev.rohitahuja.chat.controller;
+package dev.rohitahuja.chat.rag;
 
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
@@ -18,7 +18,7 @@ public class VectorSearchController {
         this.vectorStore = vectorStore;
     }
 
-    @GetMapping("/similarity-search")
+    @GetMapping("/rag/similarity-search")
     public String similaritySearch(@RequestParam String text) {
         List<Document> results = vectorStore.similaritySearch(SearchRequest.builder()
                 .query(text)
