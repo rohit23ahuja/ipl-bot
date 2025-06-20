@@ -1,4 +1,4 @@
-package dev.rohitahuja.chat.toolcalling;
+package dev.rohitahuja.chat.toolcalling.tools;
 
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.context.i18n.LocaleContextHolder;

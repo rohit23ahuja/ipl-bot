@@ -1,9 +1,9 @@
-package dev.rohitahuja.chat.toolcalling;
+package dev.rohitahuja.chat.toolcalling.tools;
 
+import dev.rohitahuja.chat.toolcalling.WeatherConfigProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.tool.annotation.Tool;
-import org.springframework.context.annotation.Description;
 import org.springframework.web.client.RestClient;
 
 public class WeatherTools {
