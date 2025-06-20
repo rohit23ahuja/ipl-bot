@@ -33,7 +33,7 @@ public class RagChatController {
         this.vectorStore = vectorStore;
     }
 
-    @GetMapping("/rag/chat")
+    @GetMapping("/chat/rag")
     public Flux<String> chat(@RequestParam String message) {
         PromptTemplate promptTemplate = new PromptTemplate(sbPromptTemplate);
         Map<String, Object> promptParameters = new HashMap<>();

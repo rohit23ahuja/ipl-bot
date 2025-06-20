@@ -64,7 +64,7 @@
         messageInput.value = '';
 
         try {
-            const response = await fetchStreamWithRetry('/tool/chat?message=' + encodeURIComponent(message));
+            const response = await fetchStreamWithRetry('/chat/rag?message=' + encodeURIComponent(message));
             const reader = response.body.getReader();
             let botMessageElement = addMessageToChat('Bot', '');
             let contentElement = botMessageElement.querySelector('.message-content');
