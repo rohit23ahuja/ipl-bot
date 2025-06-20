@@ -18,7 +18,7 @@ public class VectorSearchController {
         this.vectorStore = vectorStore;
     }
 
-    @GetMapping("/rag/similarity-search")
+    @GetMapping("/chat/rag/similarity-search")
     public String similaritySearch(@RequestParam String text) {
         List<Document> results = vectorStore.similaritySearch(SearchRequest.builder()
                 .query(text)

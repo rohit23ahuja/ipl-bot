@@ -1,0 +1,4 @@
+curl --location 'http://localhost:8085/chat/rag/data-load?fileName=ipl-faq.txt' \
+--data ''
+
+curl --location 'http://localhost:8085/chat/rag/similarity-search?text=iyer'

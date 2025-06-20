@@ -15,7 +15,7 @@ public class DataLoadController {
         this.dataLoader = dataLoader;
     }
 
-    @GetMapping("/rag/data-load")
+    @GetMapping("/chat/rag/data-load")
     public void dataLoad(@RequestParam String fileName) {
         dataLoader.load(fileName);
     }

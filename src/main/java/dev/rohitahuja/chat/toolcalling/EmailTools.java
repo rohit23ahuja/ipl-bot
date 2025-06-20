@@ -6,6 +6,7 @@ import jakarta.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.tool.annotation.Tool;
+import org.springframework.ai.tool.annotation.ToolParam;
 
 import java.util.Properties;
 
@@ -20,7 +21,7 @@ public class EmailTools {
 
 
     @Tool(description = "Send an email to a given recipient with message.")
-    public void sendEmail(String recipient, String message) {
+    public void sendEmail(@ToolParam(description = "recipient of email") String recipient, @ToolParam(description = "message or body of email") String message) {
         _log.info("Email Recipient: {}, Message: {}", recipient, message);
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
