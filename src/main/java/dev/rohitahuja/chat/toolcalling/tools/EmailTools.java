@@ -1,5 +1,6 @@
-package dev.rohitahuja.chat.toolcalling;
+package dev.rohitahuja.chat.toolcalling.tools;
 
+import dev.rohitahuja.chat.toolcalling.EmailConfigProperties;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;

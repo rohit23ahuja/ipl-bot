@@ -1,7 +1,9 @@
 package dev.rohitahuja.chat.toolcalling;
 
+import dev.rohitahuja.chat.toolcalling.tools.DateTimeTools;
+import dev.rohitahuja.chat.toolcalling.tools.EmailTools;
+import dev.rohitahuja.chat.toolcalling.tools.WeatherTools;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
