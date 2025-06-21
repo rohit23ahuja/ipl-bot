@@ -57,4 +57,7 @@
 5. rest options will be default mostly, falling under aws free tier. 
 6. enable assign public ip option is set. 
 7. Navigate to end of Advanced Details on EC2 launch and provide [download-install.sh](scripts/download-install.sh) as User data. 
-8. allocated elastic for use with ec2.
+8. allocated elastic ip for use with ec2.
+
+### login to ec2 server
+1. run nginx config script
