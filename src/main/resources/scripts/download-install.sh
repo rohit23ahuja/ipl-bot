@@ -60,23 +60,25 @@ EOF
 }
 
 mcp_server_checkout_build_run() {
+  cd /
   git clone https://github.com/rohit23ahuja/springai-mcp-sse-server.git
   sudo chown -R ec2-user:ec2-user springai-mcp-sse-server
   sudo chmod 777 -R springai-mcp-sse-server
   sudo chmod 777 -R springai-mcp-sse-server/
   cd springai-mcp-sse-server
   mvn clean package
-  java -jar target/springai-mcp-sse-server-0.0.1-SNAPSHOT.jar &
+  sudo java -jar target/springai-mcp-sse-server-0.0.1-SNAPSHOT.jar &
 }
 
 app_checkout_build_run() {
+  cd /
   git clone https://github.com/rohit23ahuja/ipl-bot.git
   sudo chown -R ec2-user:ec2-user ipl-bot
   sudo chmod 777 -R ipl-bot
   sudo chmod 777 -R ipl-bot/
   cd ipl-bot
   mvn clean package
-  java -jar target/ipl-bot-0.0.1-SNAPSHOT.jar &
+  sudo java -jar target/ipl-bot-0.0.1-SNAPSHOT.jar &
 }
 
 update_and_install
