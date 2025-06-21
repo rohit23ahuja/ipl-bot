@@ -11,7 +11,7 @@ update_and_install(){
   echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bash_profile
   source ~/.bash_profile
   sudo dnf install -y awscli
-  sudo dnf install -y postgresql
+  sudo dnf install -y postgresql15
   java -version
   mvn -version
   git --version
