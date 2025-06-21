@@ -16,6 +16,20 @@
 2. Create db secruity group which :-
     1. has an inbound rule that allows incoming TCP traffic from everywhere for port 5432. 
 
+### RDS Launch
+1. Go RDS service, select Postgres engine version.
+2. Select Free tier template for your db
+3. Provide master password for your db.
+4. Attach the created security group to this DB instance.
+5. De select enable performance insights to save on unnecessary costs.
+6. Allow public access
+7. use pgadmin to test connection to this DB instance from your local machine.
+8. de select enable automated back ups
+9. de select enhanced monitoring
+10. de select enable minor version upgrade
+11. de select enable encryption
+12. Create database ```ai_learn```
+
 ### IAM Role set up
 1. create iam role and attach it to your ec2 instance.
     1. Go to IAM > Roles in AWS Console.
@@ -34,20 +48,6 @@
 7. laie-springai/db-host
 8. laie-springai/db-password
 9. laie-springai/openai-chat-model
-
-### RDS Launch
-1. Go RDS service, select Postgres engine version.
-2. Select Free tier template for your db
-3. Provide master password for your db.
-4. Attach the created security group to this DB instance.
-5. De select enable performance insights to save on unnecessary costs.
-6. Allow public access
-7. use pgadmin to test connection to this DB instance from your local machine.
-8. de select enable automated back ups
-9. de select enhanced monitoring
-10. de select enable minor version upgrade
-11. de select enable encryption
-12. Create database ```ai_learn```
 
 ### EC2 Launch
 1. allocated elastic for use with ec2.
