@@ -13,7 +13,7 @@
         1. HTTPS traffic on TCP port 443 from your ip or from everywhere.
         2. HTTP traffic on TCP port 80 from your ip or from everywhere.
         3. SSH on port 22 from your ip or from everywhere.
-2. Create db secruity group which :-
+2. Create db security group which :-
     1. has an inbound rule that allows incoming TCP traffic from everywhere for port 5432. 
 
 ### RDS Launch
@@ -40,22 +40,21 @@
 
 ### AWS System manager parameter store
 1. in region eu-west-2
-2. laie-springai/openai-api-key
-3. laie-springai/documents-path
-4. laie-springai/weather-api-key
-5. laie-springai/email-username
-6. laie-springai/email-password
-7. laie-springai/db-host
-8. laie-springai/db-password
-9. laie-springai/openai-chat-model
+2. /laie-springai/openai-api-key
+3. /laie-springai/documents-path
+4. /laie-springai/weather-api-key
+5. /laie-springai/email-username
+6. /laie-springai/email-password
+7. /laie-springai/db-host
+8. /laie-springai/db-password
+9. /laie-springai/openai-chat-model
 
 ### EC2 Launch
-1. allocated elastic for use with ec2.
-2. attach security group created above. 
-3. create a rsa key pair for ec2 user. This will be used by putty for ssh.
-4. connect using ec2 instance connect in external network, to avoid putty
-5. select amazon linux 2, architecture 64-bit x86.
-6. rest options will be default mostly, falling under aws free tier.
-7. enable assign public ip option is set.
-8. Navigate to end of Advanced Details on EC2 launch and provide [download-install.sh](scripts/download-install.sh) as User data.
-
+1. attach security group created above. 
+2. create a rsa key pair for ec2 user. This will be used by putty for ssh. 
+3. connect using ec2 instance connect in external network, to avoid putty 
+4. select amazon linux 2, architecture 64-bit x86. 
+5. rest options will be default mostly, falling under aws free tier. 
+6. enable assign public ip option is set. 
+7. Navigate to end of Advanced Details on EC2 launch and provide [download-install.sh](scripts/download-install.sh) as User data. 
+8. allocated elastic for use with ec2.
