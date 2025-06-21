@@ -39,3 +39,5 @@ create database ai_learn2;
 
 * create database then run application
 * spring ai will initialize schema w
+  
+psql -h "$DB_HOST" -U your_db_user -d your_db_name
